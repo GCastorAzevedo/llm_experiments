@@ -22,6 +22,7 @@ export default async function handler(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
     });
+    console.log("A", upstream, "A", JSON.stringify({ query }));
     if (!upstream.ok) {
       return response
         .status(502)

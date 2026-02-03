@@ -1,20 +1,15 @@
-import type { Request, Response} from "express";
 import express from "express";
+import search from "./routes/search.ts";
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 const port = process.env.PORT || 4000;
 
-app.get("/search", (request: Request, response: Response) => {
-    const documents: Array<string> = ["42", "not 42"]
-    response.json({ documents })
-})
-
-app.post("/search", (request: Request, response: Response) => {
-    const documents: Array<string> = ["42", "not 42"]
-    response.json({ documents })
-})
+app.use("/search", search);
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`)
-})
+  console.log(`Server running at http://localhost:${port}`);
+});
